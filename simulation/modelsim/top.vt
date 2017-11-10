@@ -1,0 +1,182 @@
+// Copyright (C) 1991-2013 Altera Corporation
+// Your use of Altera Corporation's design tools, logic functions 
+// and other software and tools, and its AMPP partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Altera Program License 
+// Subscription Agreement, Altera MegaCore Function License 
+// Agreement, or other applicable license agreement, including, 
+// without limitation, that your use is for the sole purpose of 
+// programming logic devices manufactured by Altera and sold by 
+// Altera or its authorized distributors.  Please refer to the 
+// applicable agreement for further details.
+
+// *****************************************************************************
+// This file contains a Verilog test bench template that is freely editable to  
+// suit user's needs .Comments are provided in each section to help the user    
+// fill out necessary details.                                                  
+// *****************************************************************************
+// Generated on "12/06/2016 19:46:03"
+                                                                                
+// Verilog Test Bench template for design : top
+// 
+// Simulation tool : ModelSim-Altera (Verilog)
+// 
+
+`timescale 1 ns/ 1 ps
+`include "42s16160.v"
+//`define DEBUG
+module top_vlg_tst();
+// constants                                           
+// general purpose registers
+//reg eachvec;
+// test vector input registers
+reg i_clk;
+wire o_sys_clk;
+wire o_clk_shift;
+
+//reg [23:0] i_ram_addr;
+//reg [15:0] i_ram_data;
+//reg [8:0] i_ram_len;
+wire o_ram_read_req;
+wire o_ram_write_req;
+reg [15:0] treg_o_sdram_dq;
+// wires                                               
+wire [15:0] ram_data;
+wire o_ram_read_valid;
+wire o_ram_write_valid;
+wire o_ready;
+wire [12:0]  o_sdram_addr;
+wire [1:0]  o_sdram_ba;
+wire o_sdram_cke;
+wire o_sdram_clk;
+wire [15:0]  o_sdram_dq;
+wire o_sdram_dqmh;
+wire o_sdram_dqml;
+
+wire o_sdram_cs_l;
+wire o_sdram_ras_l;
+wire o_sdram_cas_l;
+wire o_sdram_we_l;
+
+wire [15:0] d_wait_cnt;
+wire d_wait_cnt_en;
+wire [7:0] d_st;
+wire d_ref_req;
+
+wire o_test_ok;
+wire o_test_er;
+wire o_test_stop;
+
+//reg start;
+
+// assign statements (if any)                          
+assign o_sdram_dq = treg_o_sdram_dq;
+
+parameter T = 20; // ns
+
+
+top i1 (
+// port map - connection between master ports and signals/registers   
+	.i_clk(i_clk),
+        .o_sys_clk(o_sys_clk),
+        .o_clk_shift(o_clk_shift),
+//	.i_ram_addr(i_ram_addr),
+//	.i_ram_data(i_ram_data),
+//	.i_ram_len(i_ram_len),
+	.o_ram_read_req(o_ram_read_req),
+	.ram_data(ram_data),
+	.o_ram_read_valid(o_ram_read_valid),
+	.o_ram_write_req(o_ram_write_req),
+	.o_ram_write_valid(o_ram_write_valid),
+	.o_ready(o_ready),
+	.o_sdram_addr(o_sdram_addr),
+	.o_sdram_ba(o_sdram_ba),
+	.o_sdram_cas_l(o_sdram_cas_l),
+	.o_sdram_cke(o_sdram_cke),
+	.o_sdram_clk(o_sdram_clk),
+	.o_sdram_cs_l(o_sdram_cs_l),
+	.o_sdram_dq(o_sdram_dq),
+	.o_sdram_dqmh(o_sdram_dqmh),
+	.o_sdram_dqml(o_sdram_dqml),
+	.o_sdram_ras_l(o_sdram_ras_l),
+	.o_sdram_we_l(o_sdram_we_l),
+
+        .o_test_ok(o_test_ok),
+        .o_test_er(o_test_er),
+        .o_test_stop(o_test_stop)
+
+`ifdef DEBUG
+        ,
+	.d_wait_cnt(d_wait_cnt),
+	.d_wait_cnt_en(d_wait_cnt_en),
+        .d_st(d_st),
+        .d_ref_req(d_ref_req)
+`endif
+);
+
+IS42S16160 
+IS42S16160_CHIP0
+(   .Dq(    o_sdram_dq    ), 
+    .Addr(  o_sdram_addr  ), 
+    .Ba(    o_sdram_ba    ), 
+    .Clk(   o_sdram_clk   ), 
+    .Cke(   o_sdram_cke   ), 
+    .Cs_n(  o_sdram_cs_l  ), 
+    .Ras_n( o_sdram_ras_l ), 
+    .Cas_n( o_sdram_cas_l ), 
+    .We_n(  o_sdram_we_l  ), 
+    .Dqm(  {o_sdram_dqmh,o_sdram_dqml} )
+);
+
+
+
+initial                                                
+begin                                                  
+// code that executes only once                        
+// insert code here --> begin                          
+
+    i_clk = 0;
+//    i_ram_addr = 0;
+//    i_ram_data = 0;
+//    i_ram_len = 0;
+//    i_ram_read_req = 0;
+//    i_ram_write_req = 0;
+    treg_o_sdram_dq = 16'hzzzz;
+
+//    start = 0;
+                                                       
+// --> end                                             
+$display("Running testbench");                       
+end                                                    
+
+always forever #(T/2) i_clk = ! i_clk;
+
+//always @(start)
+//begin
+//    if (start) #(T/2) i_clk = ! i_clk;
+//end
+
+always                                                 
+// optional sensitivity list                           
+// @(event1 or event2 or .... eventn)                  
+begin                                                  
+// code executes for every event on sensitivity list   
+// insert code here --> begin                          
+
+    #100_000;
+
+//    wait(o_ready == 1);
+//    #1_000_000;
+
+    wait(o_test_stop == 1);
+    #100_000;
+
+    $stop;
+                                                       
+//@eachvec;                                              
+// --> end                                             
+end                                                    
+endmodule
+
